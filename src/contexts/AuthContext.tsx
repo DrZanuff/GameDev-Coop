@@ -1,4 +1,5 @@
-import { createContext, ReactNode, useState , useEffect } from 'react';
+import { createContext, ReactNode, useState , useEffect  } from 'react';
+import { useHistory } from 'react-router-dom';
 import { firebase, auth } from '../services/firebase';
 
 
@@ -21,7 +22,7 @@ type AuthContextType = {
 export const AuthContext = createContext({} as AuthContextType);
 
 export function AuthContextProvider(props : AuthContextProviderProps){
-
+    const history = useHistory();
     const [user, setUser] = useState<User>();
 
     //Efeito dispara se o Firebase identificar que um usuário está logado. Util para quando usar F5
@@ -71,9 +72,16 @@ export function AuthContextProvider(props : AuthContextProviderProps){
   
     }
 
+    async function signOut() {
+      await auth.signOut();
+      setUser(undefined);
+      history.push('/');
+    }
+
     return(
         <AuthContext.Provider value={ { user ,singInWithGoogle } }>
             {props.children}
+            {user !== undefined && <button onClick={signOut}>Sign Out</button>}
         </AuthContext.Provider>
     )
 }
