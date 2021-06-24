@@ -15,8 +15,19 @@ type FirebaseQuestions = Record<string,{
     }
     content : string;
     isAnswered : boolean;
-    isHighLighted : boolean
+    isHighlighted : boolean
 }>
+
+type Question = {
+    id : string;
+    author : {
+        name: string;
+        avatar: string;
+    }
+    content : string;
+    isAnswered : boolean;
+    isHighlighted : boolean
+}
 
 type RoomParams = {
     id : string;
@@ -28,12 +39,58 @@ export function Room(){
     const roomId = params.id;
 
     const [ newQuestion , setNewQuestion] = useState('');
-    //const [ questions , setQuestions ] = useState([]);
+    const [ questions , setQuestions ] = useState<Question[]>([]);
+    const [ title , setTitle ] = useState('');
+    //const [ refresh , setRefresh ] = useState(false);
 
+/*      useEffect(() => {
+        const interval = setInterval(() => {
+            console.log('This will run every second!');
+            console.log(refresh + String(new Date() ) );
+            console.log(new Date() );
+            setRefresh(!refresh);
+        }, 10000);
+        return () => {
+            clearInterval(interval)
+        };
+      }, [refresh]);
+
+    //Carrega toda vez que uma nova pergunta é adicionada
     useEffect( () => {
         const roomRef = database.ref(`rooms/${roomId}`);
 
-        roomRef.once('value' , room =>{
+        roomRef.on('child_added' , (snapshot, prevChildKey) =>{
+            const databaseRoom = snapshot.val()
+            const firebaseQuestions : FirebaseQuestions = databaseRoom.questions ?? {};
+
+            const parsedQuestions = Object.entries(firebaseQuestions).map( ([key , value]) =>{
+                return {
+                    id: key,
+                    content: value.content,
+                    author: value.author,
+                    isHighlighted : value.isHighlighted,
+                    isAnswered : value.isAnswered,
+                }
+            })
+
+            
+            //console.log(roomId in snapshot.val())
+            if (typeof snapshot.val() == 'object' ){
+                console.log(Object.keys( snapshot.val() ) )
+                console.log(roomId)
+                //console.log(Object.keys( snapshot.val() ) )
+            }
+            //console.log(parsedQuestions)
+            setTitle(databaseRoom.title)
+            setQuestions(parsedQuestions);
+        })
+    } , [roomId, refresh]) */
+
+    //Carrega pela primeira vez quando entra na sala todas as perguntas
+      useEffect( () => {
+        const roomRef = database.ref(`rooms/${roomId}`);
+        console.log("First Load")
+        roomRef.on('value' , room =>{
             const databaseRoom = room.val()
             const firebaseQuestions : FirebaseQuestions = databaseRoom.questions ?? {};
 
@@ -42,14 +99,17 @@ export function Room(){
                     id: key,
                     content: value.content,
                     author: value.author,
-                    isHighlighted : value.isHighLighted,
+                    isHighlighted : value.isHighlighted,
                     isAnswered : value.isAnswered,
                 }
             })
 
-            console.log(parsedQuestions)
+            setTitle(databaseRoom.title)
+            setQuestions(parsedQuestions);
         })
     } , [roomId])
+
+
 
     async function handleSendQuestion(event : FormEvent) {
         event.preventDefault();
@@ -89,8 +149,8 @@ export function Room(){
 
             <main>
                 <div className='room-title'>
-                    <h1>Sala React</h1>
-                    <span>4 perguntas</span>
+                    <h1>Sala {title}</h1>
+                    { questions.length > 0 && <span>{questions.length} pergunta(s)</span> }
                 </div>
 
                 <form onSubmit={handleSendQuestion}>
@@ -116,6 +176,8 @@ export function Room(){
                     </div>
                     
                 </form>
+
+                {JSON.stringify(questions)}
             </main>
 
         </div>
