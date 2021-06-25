@@ -51,8 +51,11 @@ export function useRoom(roomId : string){
                 }
             })
 
+
+            const questionsSorted = parsedQuestions.sort( (a,b) => a.likeCount - b.likeCount ).reverse()
+            
             setTitle(databaseRoom.title)
-            setQuestions(parsedQuestions);
+            setQuestions(questionsSorted);
         })
 
         return () => roomRef.off('value');

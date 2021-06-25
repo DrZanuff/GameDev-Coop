@@ -3,9 +3,36 @@
     border-radius: 8px;
     box-shadow: 0 5px rgba(0, 0, 0, 0.322);
     padding: 24px;
+    border-top: 1px solid rgba(0, 0, 0, 0.096);
+    border-left: 1px solid rgba(0, 0, 0, 0.096);
+    border-right: 1px solid rgba(0, 0, 0, 0.096);
 
     & + .question{
         margin-top: 8px;
+    }
+
+    &.highlighted{
+        background: rgb(255,255,255);
+        background: linear-gradient(144deg, rgba(255,255,255,1) 0%, rgb(249, 217, 255) 35%, rgb(255, 252, 222) 100%);
+        border: 2px solid #835afd;
+
+        footer .user-info span{
+            color: #29292e;
+        }
+    }
+
+    &.answered{
+        background: #e2e2e2;
+        border: 0px solid;
+        box-shadow:  0 0px rgba(0, 0, 0, 0);
+
+        footer .user-info span{
+            color: #69696b;
+        }
+
+        p{
+            color: #69696b;
+        }
     }
 
     p{
@@ -33,6 +60,11 @@
                 color: #737380;
                 font-size: 14px;
             }
+        }
+
+        > div {
+            display: flex;
+            gap : 16px
         }
 
         button{
