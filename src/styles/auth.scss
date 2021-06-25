@@ -1,12 +1,12 @@
 #page-auth{
     display: flex;
     align-items: stretch;
-    height: 100vh;
+    height: 90vh;
 
     aside{
         flex: 7;
 
-        background: #835afd;
+        background: #46496d;
         color : #FFF;
         display: flex;
         flex-direction: column;
@@ -36,6 +36,7 @@
     main{
         flex: 8;
 
+        background: #35354d;
         padding: 0 32px;
         display: flex;
         align-items: center;
@@ -65,8 +66,14 @@
                 height: 50px;
                 border-radius: 8px;
                 padding: 0 16px;
-                background: #FFF;
-                border: 1px solid #a8a8b3
+                background: #46496d;
+                border: 1px solid #ffffff;
+                color: #ffffff;
+
+            }
+
+            ::placeholder{
+                color: #ffffff60;
             }
 
             button{

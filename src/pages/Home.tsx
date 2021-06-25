@@ -3,8 +3,8 @@ import { FormEvent, useContext, useState } from 'react';
 
 import { AuthContext } from '../contexts/AuthContext';
 
-import illustrationImg from '../assets/images/illustration.svg';
-import logoImg from '../assets/images/logo.svg'
+import illustrationImg from '../assets/images/video_game.svg';
+import logoImg from '../assets/images/gdc-logo.png';
 import googleIconImg from '../assets/images/google-icon.svg';
 
 import {Button} from '../components/Button';
@@ -52,8 +52,8 @@ export function Home(){
         <div id='page-auth'>
             <aside>
                 <img src={illustrationImg} alt='Ilustração simbolizando perguntas e respostas'></img>
-                <strong>Crie salas de Q&amp;A ao-vivo</strong>
-                <p>Tire as dúvidas da sua audiência em tempo-real</p>
+                <strong>GameDev Coop</strong>
+                <p>Desenvolva jogos com sua audiência em tempo-real. Implemente as funcionalidades sugeridas pelo seus espctadores.</p>
             </aside>
             <main>
                 <div className='main-content'>

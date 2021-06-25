@@ -1,4 +1,3 @@
-import { specialChars } from '@testing-library/user-event';
 import copyImg from '../assets/images/copy.svg';
 import '../styles/room-code.scss';
 
@@ -9,6 +8,7 @@ type RoomCodeProps = {
 export function RoomCode(props : RoomCodeProps){
     function copyRoomCodeToClipboard(){
         navigator.clipboard.writeText(props.code)
+        alert("Room code copied!")
     }
 
     return(

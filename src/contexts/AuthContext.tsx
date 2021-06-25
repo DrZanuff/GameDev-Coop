@@ -1,8 +1,7 @@
 import { createContext, ReactNode, useState , useEffect  } from 'react';
 import { useHistory } from 'react-router-dom';
 import { firebase, auth } from '../services/firebase';
-
-
+import '../styles/sign-out-button.scss';
 
 type AuthContextType = {
     user : User | undefined;
@@ -80,8 +79,10 @@ export function AuthContextProvider(props : AuthContextProviderProps){
 
     return(
         <AuthContext.Provider value={ { user ,singInWithGoogle } }>
+          <div className='header'>
+            {user !== undefined && <button className='sign-out' onClick={signOut}>Sign Out</button>} 
             {props.children}
-            {user !== undefined && <button onClick={signOut}>Sign Out</button>}
+          </div>
         </AuthContext.Provider>
     )
 }

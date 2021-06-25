@@ -1,10 +1,8 @@
 import { FormEvent, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
-
-
 import illustrationImg from '../assets/images/illustration.svg';
-import logoImg from '../assets/images/logo.svg'
+import logoImg from '../assets/images/gdc-logo.png';
 import {Button} from '../components/Button';
 import { database } from '../services/firebase';
 import { useAuth } from '../hooks/useAuths'
@@ -30,11 +28,11 @@ export function NewRoom(){
             authorId: user?.id,
         })
 
-        history.push(`/rooms/${firebaseRoom.key}`);
+        history.push(`/admin/rooms/${firebaseRoom.key}`);
     }
 
     return(
-        <div id='page-auth'>
+        <div id='page-auth' className={ `${!user ? 'no-user' : 'user'}` }>
             <aside>
                 <img src={illustrationImg} alt='Ilustração simbolizando perguntas e respostas'></img>
                 <strong>Crie salas de Q&amp;A ao-vivo</strong>
