@@ -53,7 +53,7 @@ export function Home(){
             <aside>
                 <img src={illustrationImg} alt='Ilustração simbolizando perguntas e respostas'></img>
                 <strong>GameDev Coop</strong>
-                <p>Desenvolva jogos com sua audiência em tempo-real. Implemente as funcionalidades sugeridas pelo seus espctadores.</p>
+                <p>Desenvolva jogos com sua audiência em tempo-real. Implemente as funcionalidades sugeridas pelo seus espectadores.</p>
             </aside>
             <main>
                 <div className='main-content'>

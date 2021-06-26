@@ -6,11 +6,12 @@ import deleteImg from '../assets/images/delete.svg';
 import {Button} from '../components/Button';
 import { Question } from '../components/Question';
 import { RoomCode } from '../components/RoomCode';
-//import { useAuth } from '../hooks/useAuths';
 import { useRoom } from '../hooks/useRoom';
-import '../styles/room.scss';
+
 import { database } from '../services/firebase';
 import { SvgIcon } from '../components/svg_icons/Icon';
+
+import '../styles/room.scss';
 
 
 type RoomParams = {
@@ -70,50 +71,169 @@ export function AdminRoom(){
                     <h1>Sala {title}</h1>
                     { questions.length > 0 && <span>{questions.length} pergunta(s)</span> }
                 </div>
-                
-                <div className="question-list">
-                    {questions.map( question => {
-                        return (
-                            <Question
-                                content={question.content}
-                                author={question.author}
-                                key={question.id}
-                                isAnswered={question.isAnswered}
-                                isHighlighted={question.isHighlighted}
-                            >
-                                <button
-                                    key={1}
-                                    type='button'
-                                    onClick={ ()=> handleCheckQuestionAsAnswered(question.id,question.isAnswered) }    
-                                >
-                                    <SvgIcon type='check' status={question.isAnswered} ></SvgIcon>
-                                </button>
 
-                                {!question.isAnswered && (
-                                    [
-                                    <button
-                                        key={2}
-                                        type='button'
-                                        onClick={ ()=> handleHilightQuestion(question.id , question.isHighlighted) }    
+                <div className='lists'>
+
+                    <div className="question-list">
+                        <div className='ideas'>
+                            <p>Features</p>
+                        </div>
+                        {questions.map( question => {
+                            if (!question.isHighlighted && !question.isAnswered){
+
+                                return (
+                                    <Question
+                                        content={question.content}
+                                        author={question.author}
+                                        key={question.id}
+                                        isAnswered={question.isAnswered}
+                                        isHighlighted={question.isHighlighted}
                                     >
-                                        <SvgIcon type='answer' status={question.isHighlighted} ></SvgIcon>
-                                    </button>
-                                    ]
-                                )}
+                                        <button
+                                            key={1}
+                                            type='button'
+                                            onClick={ ()=> handleCheckQuestionAsAnswered(question.id,question.isAnswered) }    
+                                        >
+                                            <SvgIcon type='check' status={question.isAnswered} ></SvgIcon>
+                                        </button>
+        
+                                        {!question.isAnswered && (
+                                            [
+                                            <button
+                                                key={2}
+                                                type='button'
+                                                onClick={ ()=> handleHilightQuestion(question.id , question.isHighlighted) }    
+                                            >
+                                                <SvgIcon type='answer' status={question.isHighlighted} ></SvgIcon>
+                                            </button>
+                                            ]
+                                        )}
+        
+                                        <button
+                                            key={3}
+                                            type='button'
+                                            onClick={ ()=> handleDeleteQuestion(question.id) }    
+                                        >
+                                            <img src={deleteImg} alt='Remover pergunta'></img>
+                                        </button>
+        
+                                    </Question>
+                                );
 
-                                <button
-                                    key={3}
-                                    type='button'
-                                    onClick={ ()=> handleDeleteQuestion(question.id) }    
-                                >
-                                    <img src={deleteImg} alt='Remover pergunta'></img>
-                                </button>
+                            }
 
-                            </Question>
-                        );
-                    } )}
+                            return(<></>)
+                        } )}
+                    </div>
+
+
+                    <div className="question-list">
+                        <div className='ideas'>
+                            <p>Tasks</p>
+                        </div>
+                        {questions.map( question => {
+                            if (question.isHighlighted && !question.isAnswered){
+
+                                return (
+                                    <Question
+                                        content={question.content}
+                                        author={question.author}
+                                        key={question.id}
+                                        isAnswered={question.isAnswered}
+                                        isHighlighted={question.isHighlighted}
+                                    >
+                                        <button
+                                            key={1}
+                                            type='button'
+                                            onClick={ ()=> handleCheckQuestionAsAnswered(question.id,question.isAnswered) }    
+                                        >
+                                            <SvgIcon type='check' status={question.isAnswered} ></SvgIcon>
+                                        </button>
+        
+                                        {!question.isAnswered && (
+                                            [
+                                            <button
+                                                key={2}
+                                                type='button'
+                                                onClick={ ()=> handleHilightQuestion(question.id , question.isHighlighted) }    
+                                            >
+                                                <SvgIcon type='answer' status={question.isHighlighted} ></SvgIcon>
+                                            </button>
+                                            ]
+                                        )}
+        
+                                        <button
+                                            key={3}
+                                            type='button'
+                                            onClick={ ()=> handleDeleteQuestion(question.id) }    
+                                        >
+                                            <img src={deleteImg} alt='Remover pergunta'></img>
+                                        </button>
+        
+                                    </Question>
+                                );
+
+                            }
+
+                            return(<></>)
+                        } )}
+                    </div>
+
+
+                    <div className="question-list">
+                        <div className='ideas'>
+                            <p>Done</p>
+                        </div>
+                        {questions.map( question => {
+                            if (question.isAnswered){
+
+                                return (
+                                    <Question
+                                        content={question.content}
+                                        author={question.author}
+                                        key={question.id}
+                                        isAnswered={question.isAnswered}
+                                        isHighlighted={question.isHighlighted}
+                                    >
+                                        <button
+                                            key={1}
+                                            type='button'
+                                            onClick={ ()=> handleCheckQuestionAsAnswered(question.id,question.isAnswered) }    
+                                        >
+                                            <SvgIcon type='check' status={question.isAnswered} ></SvgIcon>
+                                        </button>
+        
+                                        {!question.isAnswered && (
+                                            [
+                                            <button
+                                                key={2}
+                                                type='button'
+                                                onClick={ ()=> handleHilightQuestion(question.id , question.isHighlighted) }    
+                                            >
+                                                <SvgIcon type='answer' status={question.isHighlighted} ></SvgIcon>
+                                            </button>
+                                            ]
+                                        )}
+        
+                                        <button
+                                            key={3}
+                                            type='button'
+                                            onClick={ ()=> handleDeleteQuestion(question.id) }    
+                                        >
+                                            <img src={deleteImg} alt='Remover pergunta'></img>
+                                        </button>
+        
+                                    </Question>
+                                );
+
+                            }
+
+                            return(<></>)
+                        } )}
+                    </div>
+
+
                 </div>
-
 
             </main>
 
