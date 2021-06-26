@@ -4,13 +4,13 @@
     overflow: hidden;
 
     background: #FFF;
-    border: 1px solid #834afd;
+    border: 1px solid #ffc540;
     cursor: pointer;
 
     display: flex;
 
     div{
-        background: #834afd;
+        background: #ffc540;
         padding: 12px;
         display: flex;
         justify-content: center;
@@ -23,7 +23,7 @@
         align-self: center;
         flex: 1;
         padding: 0 16px 0 12px;
-        width: 230px;
+        width: 280px;
         font-size: 14px;
         font-weight: 500;
     }

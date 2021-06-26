@@ -6,7 +6,7 @@ type SvgIconProps = {
 }
 
 export function SvgIcon( {type , status} : SvgIconProps){
-    const color = status ? '#835afd' : '#737380'
+    const color = status ? '#ffc540' : '#FFF'
 
     return(
         <> 

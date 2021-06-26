@@ -1,9 +1,7 @@
 import { useHistory, useParams } from 'react-router-dom';
 
-import logoImg from '../assets/images/logo.svg';
+import logoImg from '../assets/images/gdc-logo.png';
 import deleteImg from '../assets/images/delete.svg';
-import checkImg from '../assets/images/check.svg';
-import answerImg from '../assets/images/answer.svg';
 
 import {Button} from '../components/Button';
 import { Question } from '../components/Question';
@@ -59,7 +57,7 @@ export function AdminRoom(){
         <div id='page-room'>
             <header>
                 <div className='content'>
-                    <img src={logoImg} alt='Letmesask'/>
+                    <img src={logoImg} alt='GameDev Coop'/>
                     <div>
                         <RoomCode code={roomId}></RoomCode>
                         <Button isOutlined onClick={handleEndRoom}>Encerrar sala</Button>

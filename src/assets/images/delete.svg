@@ -1,4 +1,9 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M3 5.99988H5H21" stroke="#737380" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M8 5.99988V3.99988C8 3.46944 8.21071 2.96074 8.58579 2.58566C8.96086 2.21059 9.46957 1.99988 10 1.99988H14C14.5304 1.99988 15.0391 2.21059 15.4142 2.58566C15.7893 2.96074 16 3.46944 16 3.99988V5.99988M19 5.99988V19.9999C19 20.5303 18.7893 21.039 18.4142 21.4141C18.0391 21.7892 17.5304 21.9999 17 21.9999H7C6.46957 21.9999 5.96086 21.7892 5.58579 21.4141C5.21071 21.039 5 20.5303 5 19.9999V5.99988H19Z" stroke="#737380" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<svg version="1.2" baseProfile="tiny-ps" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+	<title>delete-svg</title>
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: none;stroke: #ffffff;stroke-linecap:round;stroke-linejoin:round;stroke-width: 1.5 } 
+	</style>
+	<path class="shp0" d="M3 6L5 6L21 6" />
+	<path class="shp0" d="M8 6L8 4C8 3.47 8.21 2.96 8.59 2.59C8.96 2.21 9.47 2 10 2L14 2C14.53 2 15.04 2.21 15.41 2.59C15.79 2.96 16 3.47 16 4L16 6M19 6L19 20C19 20.53 18.79 21.04 18.41 21.41C18.04 21.79 17.53 22 17 22L7 22C6.47 22 5.96 21.79 5.59 21.41C5.21 21.04 5 20.53 5 20L5 6L19 6Z" />
 </svg>

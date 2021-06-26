@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
-import illustrationImg from '../assets/images/illustration.svg';
+import illustrationImg from '../assets/images/video_game.svg';
 import logoImg from '../assets/images/gdc-logo.png';
 import {Button} from '../components/Button';
 import { database } from '../services/firebase';
@@ -10,7 +10,7 @@ import { useAuth } from '../hooks/useAuths'
 import '../styles/auth.scss';
 
 export function NewRoom(){
-    const { user } = useAuth();
+    const { user , signOut } = useAuth();
     const history = useHistory()
     const [newRoom , setNewRoom] = useState('');
 
@@ -32,11 +32,11 @@ export function NewRoom(){
     }
 
     return(
-        <div id='page-auth' className={ `${!user ? 'no-user' : 'user'}` }>
+        <div id='page-auth'>
             <aside>
                 <img src={illustrationImg} alt='Ilustração simbolizando perguntas e respostas'></img>
-                <strong>Crie salas de Q&amp;A ao-vivo</strong>
-                <p>Tire as dúvidas da sua audiência em tempo-real</p>
+                <strong>GameDev Coop</strong>
+                <p>Desenvolva jogos com sua audiência em tempo-real. Implemente as funcionalidades sugeridas pelo seus espctadores.</p>
             </aside>
             <main>
                 <div className='main-content'>
@@ -56,6 +56,12 @@ export function NewRoom(){
                     <p>
                         Quer entrar em uma sala existente? <Link to='/'>Clique aqui</Link>
                     </p>
+                    { user &&
+                        <Button onClick={signOut} isOutlined>
+                            Sign Out
+                        </Button>
+                    }
+                    
                 </div>
             </main>
         </div>

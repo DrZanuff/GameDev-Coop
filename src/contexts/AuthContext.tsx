@@ -6,6 +6,7 @@ import '../styles/sign-out-button.scss';
 type AuthContextType = {
     user : User | undefined;
     singInWithGoogle : () => Promise<void>;
+    signOut : () => Promise<void>;
   }
   
   type User = {
@@ -78,11 +79,8 @@ export function AuthContextProvider(props : AuthContextProviderProps){
     }
 
     return(
-        <AuthContext.Provider value={ { user ,singInWithGoogle } }>
-          <div className='header'>
-            {user !== undefined && <button className='sign-out' onClick={signOut}>Sign Out</button>} 
+        <AuthContext.Provider value={ { user ,singInWithGoogle , signOut } }>
             {props.children}
-          </div>
         </AuthContext.Provider>
     )
 }

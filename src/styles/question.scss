@@ -1,5 +1,5 @@
 .question {
-    background: #fefefe;
+    background: #46496d;
     border-radius: 8px;
     box-shadow: 0 5px rgba(0, 0, 0, 0.322);
     padding: 24px;
@@ -12,31 +12,30 @@
     }
 
     &.highlighted{
-        background: rgb(255,255,255);
-        background: linear-gradient(144deg, rgba(255,255,255,1) 0%, rgb(249, 217, 255) 35%, rgb(255, 252, 222) 100%);
-        border: 2px solid #835afd;
+        background: #46496d;
+        border: 2px solid #ffc540;
 
         footer .user-info span{
-            color: #29292e;
+            color: #ffc540;
         }
     }
 
     &.answered{
-        background: #e2e2e2;
+        background: #414358;
         border: 0px solid;
         box-shadow:  0 0px rgba(0, 0, 0, 0);
 
         footer .user-info span{
-            color: #69696b;
+            color: #838383;
         }
 
         p{
-            color: #69696b;
+            color: #999999;
         }
     }
 
     p{
-        color: #29292e;
+        color: #FFF;
     }
 
     footer{
@@ -50,14 +49,16 @@
             align-items: center;
 
             img{
-                width: 32px;
-                height: 32px;
+                width: 38px;
+                height: 38px;
                 border-radius: 50%;
+                border-top: 1px solid rgba(48, 48, 48, 0.26);
+                box-shadow:0 3px rgba(48, 48, 48, 0.596);
             }
 
             span{
                 margin-left: 14px;
-                color: #737380;
+                color: #e4e4e4;
                 font-size: 14px;
             }
         }
@@ -76,19 +77,20 @@
             &.like-button{
                 display: flex;
                 align-items: flex-end;
-                color: #737380;
 
                 svg{
                     margin-left: 8px;
+                    stroke: #FFF;
+                    color: #FFF;
                 }
                 
             }
 
             &.liked{
-                color: #835afd;
+                color: #ffc540;
 
                 svg path{
-                    stroke: #835afd;
+                    stroke: #ffc540;
                 }
             }
 

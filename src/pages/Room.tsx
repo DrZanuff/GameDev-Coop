@@ -1,7 +1,7 @@
 import { FormEvent, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import logoImg from '../assets/images/logo.svg';
+import logoImg from '../assets/images/gdc-logo.png';
 import {Button} from '../components/Button';
 import { Question } from '../components/Question';
 import { RoomCode } from '../components/RoomCode';
@@ -65,7 +65,7 @@ export function Room(){
         <div id='page-room'>
             <header>
                 <div className='content'>
-                    <img src={logoImg} alt='Letmesask'/>
+                    <img src={logoImg} alt='GameDev Coop'/>
                     <RoomCode code={roomId}></RoomCode>
                 </div>
             </header>
