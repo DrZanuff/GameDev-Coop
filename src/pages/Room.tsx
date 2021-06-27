@@ -16,7 +16,7 @@ type RoomParams = {
 }
 
 export function Room(){
-    const {user , singInWithGoogle } = useAuth();
+    const {user , singInWithGoogle , singInWithGitHub} = useAuth();
     const params = useParams<RoomParams>();
     const [ newQuestion , setNewQuestion] = useState('');
     const roomId = params.id;
@@ -92,7 +92,11 @@ export function Room(){
                             <span>{user.name}</span>
                         </div>
                         :
-                        <span>Para enviar uma pergunta, <button onClick={singInWithGoogle} id='login'>faça seu login</button>.</span>
+                        <span>
+                            Para enviar uma pergunta com uma conta Google, <button onClick={singInWithGoogle} id='login'>faça seu login</button>.
+                            <br/><br/>
+                            Para enviar uma pergunta com uma conta GitHub, <button onClick={singInWithGitHub} id='login'>faça seu login</button>.
+                        </span>
                         }
                         
                         <Button type='submit' disabled={!user}>Enviar uma pergunta</Button>

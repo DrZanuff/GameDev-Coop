@@ -6,6 +6,7 @@ import { AuthContext } from '../contexts/AuthContext';
 import illustrationImg from '../assets/images/video_game.svg';
 import logoImg from '../assets/images/gdc-logo.png';
 import googleIconImg from '../assets/images/google-icon.svg';
+import gitHubIconImg from '../assets/images/github.png';
 
 import {Button} from '../components/Button';
 
@@ -14,12 +15,20 @@ import { database } from '../services/firebase';
 
 export function Home(){
     const history = useHistory();
-    const { user , singInWithGoogle , signOut } = useContext(AuthContext);
+    const { user , singInWithGoogle , singInWithGitHub , signOut } = useContext(AuthContext);
     const [roomCode , setRoomCode] = useState('');
 
-    async function handleCreateRoom(){
+    async function handleCreateRoomGoogle(){
         if (!user){
             await singInWithGoogle();
+        }
+
+        history.push('/rooms/new');
+    }
+
+    async function handleCreateRoomGitHub(){
+        if (!user){
+            await singInWithGitHub();
         }
 
         history.push('/rooms/new');
@@ -59,15 +68,19 @@ export function Home(){
                 <div className='main-content'>
                     <img src={logoImg} alt='Letmeask'/>
                     { !user &&
-                    
-                    <button className='create-room' onClick={handleCreateRoom}>
+                    [
+                    <button className='create-room-google' onClick={handleCreateRoomGoogle} key={1}>
                         <img src={googleIconImg} alt='Logo da Google'></img>
                         Crie sua sala com o Google
+                    </button>,
+                    <button className='create-room-github' onClick={handleCreateRoomGitHub} key={2}>
+                    <img src={gitHubIconImg} alt='Logo do GitHub'></img>
+                        Crie sua sala com o GitHub
                     </button>
+                    ]
                     }
                     { user &&
-                    
-                    <Button onClick={handleCreateRoom}>
+                    <Button onClick={handleCreateRoomGoogle}>
                         Crie sua sala
                     </Button>
                     }

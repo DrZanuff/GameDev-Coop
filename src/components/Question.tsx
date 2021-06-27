@@ -22,7 +22,7 @@ export function Question( {content,author,isAnswered=false,isHighlighted=false,c
                     <img src={author.avatar} alt={author.name} ></img>
                     <span>{author.name}</span>
                 </div>
-                <div>
+                <div className='buttons'>
                     {children}
                 </div>
             </footer>

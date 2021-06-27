@@ -6,6 +6,7 @@ import '../styles/sign-out-button.scss';
 type AuthContextType = {
     user : User | undefined;
     singInWithGoogle : () => Promise<void>;
+    singInWithGitHub : () => Promise<void>;
     signOut : () => Promise<void>;
   }
   
@@ -31,15 +32,20 @@ export function AuthContextProvider(props : AuthContextProviderProps){
     useEffect( ()=> {
       const unsubscribe = auth.onAuthStateChanged(user =>{
         if (user){
-          const { displayName , photoURL , uid } = user;
-        
-          if ( !displayName || !photoURL){
-            throw new Error('Missing information from Google Account.');
+          let { displayName , photoURL , uid  ,email ,providerData} = user;
+          
+          if ( !displayName ){
+            displayName = email;
+          }
+          
+  
+          if ( !photoURL ){
+            photoURL = 'https://github.com/DrZanuff/GameDev-Coop/raw/master/src/assets/images/gdc-logo.png';
           }
     
           setUser({
             id : uid,
-            name : displayName,
+            name : displayName ? displayName : (providerData[0]?.email ? providerData[0].email : 'Anonymous'),
             avatar : photoURL
           })
         }
@@ -51,6 +57,32 @@ export function AuthContextProvider(props : AuthContextProviderProps){
   
     } , [] )
   
+    async function singInWithGitHub(){
+      const provider = new firebase.auth.GithubAuthProvider();
+
+      const result = await auth.signInWithPopup(provider);
+
+      if (result.user){
+        
+        let { displayName , photoURL , uid  ,email ,providerData} = result.user;
+
+        if ( !displayName ){
+          displayName = email;
+        }
+        
+
+        if ( !photoURL ){
+          photoURL = 'https://github.com/DrZanuff/GameDev-Coop/raw/master/src/assets/images/gdc-logo.png';
+        }
+  
+        setUser({
+          id : uid,
+          name : displayName ? displayName : (providerData[0]?.email ? providerData[0].email : 'Anonymous'),
+          avatar : photoURL
+        })
+      }
+    }
+
     async function singInWithGoogle(){
       const provider = new firebase.auth.GoogleAuthProvider();
   
@@ -79,7 +111,7 @@ export function AuthContextProvider(props : AuthContextProviderProps){
     }
 
     return(
-        <AuthContext.Provider value={ { user ,singInWithGoogle , signOut } }>
+        <AuthContext.Provider value={ { user ,singInWithGoogle , singInWithGitHub , signOut } }>
             {props.children}
         </AuthContext.Provider>
     )
