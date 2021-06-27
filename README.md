@@ -19,3 +19,6 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - React
 - Firebase
 - TypeScript
+
+## License
+Esse projeto está sob a licença MIT
